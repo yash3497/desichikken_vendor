@@ -1,0 +1,92 @@
+{
+  "project_info": {
+    "project_number": "113255978150",
+    "project_id": "delicious-131ed",
+    "storage_bucket": "delicious-131ed.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:113255978150:android:6136c4df4ae83c7efcd067",
+        "android_client_info": {
+          "package_name": "com.example.delicious_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "113255978150-kj5b64sl0q14v2nu3ae719grouaggssp.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.delicious_app",
+            "certificate_hash": "5568ff4c201aafd0ee41c8cada49366cc0de3cf9"
+          }
+        },
+        {
+          "client_id": "113255978150-m0bomq66voodkjqml5fpi91um6q61m6k.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.delicious_app",
+            "certificate_hash": "28a57140be955cdbeaf5083424057e9f34c5d9fb"
+          }
+        },
+        {
+          "client_id": "113255978150-q6bjf4mtvbnau5dd1kc6b3mtpm2niblm.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBC3-f7q9OR-NFa3d9nrblKud0RboIPm_E"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "113255978150-q6bjf4mtvbnau5dd1kc6b3mtpm2niblm.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:113255978150:android:b3e7fb72da8236ddfcd067",
+        "android_client_info": {
+          "package_name": "com.example.delicious_vendor"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "113255978150-ag1l3ttf97uk8mpqubrjqcmj614ccvvc.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.delicious_vendor",
+            "certificate_hash": "a2d7eb213ca13323b52c32af3a5aef6de94b27cb"
+          }
+        },
+        {
+          "client_id": "113255978150-q6bjf4mtvbnau5dd1kc6b3mtpm2niblm.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBC3-f7q9OR-NFa3d9nrblKud0RboIPm_E"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "113255978150-q6bjf4mtvbnau5dd1kc6b3mtpm2niblm.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

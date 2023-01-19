@@ -108,7 +108,16 @@ class _FillyourProfileState extends State<FillyourProfile> {
   List myCats = [];
   getCats() async {
     var a = await FirebaseFirestore.instance.collection("Categories").get();
-
+    try {
+      var b = await FirebaseFirestore.instance
+          .collection("vendors")
+          .doc(FirebaseAuth.instance.currentUser!.uid.substring(0, 20))
+          .get();
+      if (b.exists) {
+        myCats = b.data()!['cats'] ?? [];
+        log(myCats.toString());
+      }
+    } catch (e) {}
     for (var j in a.docs) {
       cats.add(j);
     }
@@ -395,6 +404,7 @@ class _FillyourProfileState extends State<FillyourProfile> {
 
                   ListView.builder(
                       shrinkWrap: true,
+                      physics: NeverScrollableScrollPhysics(),
                       itemCount: cats.length,
                       itemBuilder: (context, index) {
                         return ListTile(

@@ -82,6 +82,7 @@ class _HomeScreenState extends State<HomeScreen> {
         .collection("Orders")
         .where('vendorId',
             isEqualTo: FirebaseAuth.instance.currentUser!.uid.substring(0, 20))
+        .where('orderCompleted', isEqualTo: true)
         .get()
         .then((value) {
       paymentList.clear();
@@ -105,6 +106,28 @@ class _HomeScreenState extends State<HomeScreen> {
       // }
 
       // notifyListeners();
+    });
+  }
+
+  bool isLoaded = false;
+  Map? VendorIncomeData = {};
+
+  Future<void> getVendorIncome() async {
+    await FirebaseFirestore.instance
+        .collection('VendorTotalAmount')
+        .doc(FirebaseAuth.instance.currentUser!.uid)
+        .get()
+        .then((value) {
+      if (value.exists) {
+        setState(() {
+          VendorIncomeData = value.data()!;
+          isLoaded = true;
+          // totalAmount = vendorData!['walletAmount'];
+          // ignore: avoid_print
+
+          log(VendorIncomeData!['amount'].toString());
+        });
+      }
     });
   }
 
@@ -243,6 +266,7 @@ class _HomeScreenState extends State<HomeScreen> {
     // Future.delayed(Duration(seconds: 2), () {
     //   showRatingDeliveryBoy(context);
     // });
+    getVendorIncome();
     getAllCat();
     _getPamentsCalculation();
     _getProfileData();
@@ -477,7 +501,7 @@ class _HomeScreenState extends State<HomeScreen> {
           CustomCard(
               image: 'assets/images/homecat1.png',
               text: 'Orders',
-              text2: '0',
+              text2: '',
               height: height(context) * 0.1,
               width: width(context) * 0.22,
               ontap: () {
@@ -488,7 +512,8 @@ class _HomeScreenState extends State<HomeScreen> {
           CustomCard(
               image: 'assets/images/homecat2.png',
               text: 'Balance',
-              text2: '0',
+              text2:
+                  VendorIncomeData!.isEmpty ? '0' : VendorIncomeData!['amount'],
               height: height(context) * 0.1,
               width: width(context) * 0.22,
               ontap: () {

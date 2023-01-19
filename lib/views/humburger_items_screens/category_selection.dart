@@ -1,3 +1,6 @@
+import 'dart:developer';
+import 'dart:io';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -23,6 +26,7 @@ class _CategorySelectionState extends State<CategorySelection> {
           .get();
       if (b.exists) {
         myCats = b.data()!['cats'] ?? [];
+        log(myCats.toString());
       }
     } catch (e) {}
     for (var j in a.docs) {
@@ -41,46 +45,73 @@ class _CategorySelectionState extends State<CategorySelection> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text("Select Category",style: TextStyle(color: Colors.red),),backgroundColor: Colors.transparent,elevation: 0,centerTitle: true,),
-
-      body:loading?Center(child: CircularProgressIndicator(),): SafeArea(
-        child: Column(
-          children: [
-            Expanded(
-              child: ListView.builder(
-                  itemCount: cats.length,
-                  itemBuilder: (context, index) {
-                    return ListTile(
-                      title: Text(cats[index]['Name']),
-                      trailing: Checkbox(
-                        value: myCats.contains(cats[index]['categoryId']),
-                        onChanged: (bool? value) {
-                          myCats.add(cats[index]['categoryId']);
-                          setState(() {});
-                        },
-                      ),
-                    );
-                  }),
-            ),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
+      appBar: AppBar(
+        title: Text(
+          "Select Category",
+          style: TextStyle(color: Colors.red),
+        ),
+        backgroundColor: Colors.transparent,
+        elevation: 0,
+        centerTitle: true,
+      ),
+      body: loading
+          ? Center(
+              child: CircularProgressIndicator(),
+            )
+          : SafeArea(
+              child: Column(
                 children: [
-                  MaterialButton(
-                    color: Colors.red,
-                    onPressed: ()async{
-                    FirebaseFirestore.instance
-                        .collection("vendors")
-                        .doc(FirebaseAuth.instance.currentUser!.uid.substring(0, 20)).update({"cats":myCats});
-                    ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text("updated")));
-                  },child: const Text("Update",style: TextStyle(color: Colors.white),),)
+                  Expanded(
+                    child: ListView.builder(
+                        itemCount: cats.length,
+                        itemBuilder: (context, index) {
+                          return ListTile(
+                            title: Text(cats[index]['Name']),
+                            trailing: Checkbox(
+                              value: myCats.contains(cats[index]['categoryId']),
+                              onChanged: (bool? value) {
+                                if (myCats
+                                    .contains(cats[index]['categoryId'])) {
+                                  myCats.remove(cats[index]['categoryId']);
+                                  setState(() {});
+                                  return;
+                                } else {
+                                  myCats.add(cats[index]['categoryId']);
+                                  setState(() {});
+                                }
+                              },
+                            ),
+                          );
+                        }),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        MaterialButton(
+                          color: Colors.red,
+                          onPressed: () async {
+                            FirebaseFirestore.instance
+                                .collection("vendors")
+                                .doc(FirebaseAuth.instance.currentUser!.uid
+                                    .substring(0, 20))
+                                .update({"cats": myCats});
+                            ScaffoldMessenger.of(context).showSnackBar(
+                                const SnackBar(content: Text("updated")));
+                            Navigator.pop(context);
+                          },
+                          child: const Text(
+                            "Update",
+                            style: TextStyle(color: Colors.white),
+                          ),
+                        )
+                      ],
+                    ),
+                  )
                 ],
               ),
-            )
-          ],
-        ),
-      ),
+            ),
     );
   }
 }

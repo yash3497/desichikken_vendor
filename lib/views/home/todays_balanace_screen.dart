@@ -31,9 +31,11 @@ class _TodaysBalanceWalletScreenState extends State<TodaysBalanceWalletScreen> {
         .collection("Orders")
         .where('vendorId',
             isEqualTo: FirebaseAuth.instance.currentUser!.uid.substring(0, 20))
-        .get()
-        .then((value) {
+        .where('orderCompleted', isEqualTo: true)
+        .snapshots()
+        .listen((value) {
       paymentList.clear();
+
       // paymentDocId.clear();
 
       for (var doc in value.docs) {
@@ -53,16 +55,32 @@ class _TodaysBalanceWalletScreenState extends State<TodaysBalanceWalletScreen> {
       }
 
       setState(() {});
-      // }
-
-      // notifyListeners();
     });
+    //     .get()
+    //     .then((value) {
+    //   // }
+
+    //   // notifyListeners();
+    // });
+  }
+
+  // @override
+  // void initState() {
+  //   _getPamentsCalculation();
+  //   super.initState();
+  // }
+
+  @override
+  void didChangeDependencies() {
+    _getPamentsCalculation();
+    // TODO: implement didChangeDependencies
+    super.didChangeDependencies();
   }
 
   @override
-  void initState() {
-    _getPamentsCalculation();
-    super.initState();
+  void dispose() {
+    // TODO: implement dispose
+    super.dispose();
   }
 
   @override
@@ -150,6 +168,7 @@ class _TodaysBalanceWalletScreenState extends State<TodaysBalanceWalletScreen> {
                   .where('vendorId',
                       isEqualTo: FirebaseAuth.instance.currentUser!.uid
                           .substring(0, 20))
+                  .where('orderCompleted', isEqualTo: true)
                   // .where('time',
                   //     isEqualTo: date)
                   .snapshots(),

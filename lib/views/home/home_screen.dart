@@ -150,17 +150,17 @@ class _HomeScreenState extends State<HomeScreen> {
   _getNewOrder() async {
     FirebaseFirestore.instance
         .collection("Orders")
-        .where('vendorId', isEqualTo: FirebaseAuth.instance.currentUser!.uid)
+        .where('vendorId',
+            isEqualTo: FirebaseAuth.instance.currentUser!.uid.substring(0, 20))
+        .where('orderAccept', isEqualTo: false)
+        .where('orderDenied', isEqualTo: false)
         .snapshots()
         .listen((event) {
-      print(lat);
-      print(long);
-
       if (event.docs.isNotEmpty) {
         for (var doc in event.docs) {
-          double distance = calculateDistanceKM(lat, long,
-              doc['customerLatlong']['lat'], doc['customerLatlong']['long']);
-          print(distance);
+          // double distance = calculateDistanceKM(lat, long,
+          //     doc['customerLatlong']['lat'], doc['customerLatlong']['long']);
+          // print(distance);
           List dd = doc['items'];
           bool presents = false;
           for (var g in dd) {
@@ -168,7 +168,10 @@ class _HomeScreenState extends State<HomeScreen> {
               presents = true;
             }
           }
-          if (doc.data()["orderAccept"] == false && distance <= 5 && presents) {
+
+          if (doc.data()["orderAccept"] == false /*&& distance <= 5*/ &&
+              presents) {
+            print("bajna");
             FlutterRingtonePlayer.play(
               fromAsset: 'assets/images/Buzzerrr.mp3',
               looping: true,
@@ -630,6 +633,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   .where('orderDenied', isEqualTo: false)
                   .snapshots(),
               builder: (ctx, snapshot) {
+                print(FirebaseAuth.instance.currentUser!.uid.substring(0, 20));
                 if (snapshot.connectionState == ConnectionState.waiting) {
                   return const Center(
                     child: CircularProgressIndicator(),
@@ -649,6 +653,8 @@ class _HomeScreenState extends State<HomeScreen> {
 
                 if (snapshot.hasData) {
                   final data = snapshot.data!.docs;
+                  print('-----------');
+                  print(data.length);
                   _getNewOrder();
                   log(data.length.toString());
                   return SizedBox(
@@ -674,16 +680,18 @@ class _HomeScreenState extends State<HomeScreen> {
 
                           // final itemTotal = orderPrice * orderQuantity;
                           // final orderPrice=double.parse(data[i]["orderPrice"])
-                          double distance = calculateDistanceKM(
-                              lat,
-                              long,
-                              docs['customerLatlong']['lat'],
-                              docs['customerLatlong']['long']);
-                          print(distance);
-                          log(distance.toString());
-                          log(presents.toString());
-                          if (distance <= 5 && presents) {
-                            log(distance.toString());
+                          print(lat);
+                          print(long);
+                          // double distance = calculateDistanceKM(
+                          //     lat,
+                          //     long,
+                          //     docs['customerLatlong']['lat'],
+                          //     docs['customerLatlong']['long']);
+                          // print(distance);
+                          // log(distance.toString());
+                          // log(presents.toString());
+                          if (presents) {
+                            // log(distance.toString());
                             return Padding(
                               padding: const EdgeInsets.only(top: 5, bottom: 5),
                               child: Container(

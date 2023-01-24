@@ -398,13 +398,13 @@ class OrdersScreen extends StatelessWidget {
                                       data[i].data()['customerName'].toString(),
                                       style: bodyText14w600(color: black),
                                     ),
-                                    Text(
-                                      // snapshot.data()['userMobile'] ?? '',
-                                      data[i]
-                                          .data()['customerPhone']
-                                          .toString(),
-                                      style: bodyText14normal(color: black),
-                                    )
+                                    // Text(
+                                    //   // snapshot.data()['userMobile'] ?? '',
+                                    //   data[i]
+                                    //       .data()['customerPhone']
+                                    //       .toString(),
+                                    //   style: bodyText14normal(color: black),
+                                    // )
                                   ],
                                 ),
                                 Row(

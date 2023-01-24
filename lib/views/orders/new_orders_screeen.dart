@@ -29,8 +29,7 @@ class _NewOrdersScreenState extends State<NewOrdersScreen> {
   _getNewOrder() async {
     FirebaseFirestore.instance
         .collection("Orders")
-
-        // .where('vendorId', isEqualTo: FirebaseAuth.instance.currentUser!.uid)
+        .where('vendorId', isEqualTo: FirebaseAuth.instance.currentUser!.uid)
         .snapshots()
         .listen((event) {
       print(lat);

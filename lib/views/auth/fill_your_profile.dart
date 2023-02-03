@@ -77,14 +77,16 @@ class _FillyourProfileState extends State<FillyourProfile> {
         ifsccodeController.text = vendorData["ifscCode"] ?? '';
         marketlocationController.text = vendorData['marketLocation'];
         _imgUrl = vendorData['image'];
+        latitude = vendorData['latitude'];
+        longitude = vendorData['longitude'];
         // });
 
       }
       if (mounted) {
         setState(() {});
       }
-      log(vendorData['marketName'].toString());
-      log(vendorData["date of birth"].toString());
+      log('aaaaaaaaaaaa${vendorData['latitude'].toString()}');
+      log(vendorData["longitude"].toString());
     });
   }
   //  _getProfileData() async {
@@ -151,6 +153,7 @@ class _FillyourProfileState extends State<FillyourProfile> {
   final TextEditingController marketSince = TextEditingController();
   @override
   Widget build(BuildContext context) {
+    // log(longitude.toString());
     return Scaffold(
       appBar: AppBar(
         backgroundColor: white,
@@ -305,6 +308,8 @@ class _FillyourProfileState extends State<FillyourProfile> {
                                       value['marketLocation'];
                                   latitude = value['latitude'];
                                   longitude = value['longitude'];
+                                  log('sssss${value['longitude'].toString()}');
+                                  log('sssss${value['latitude'].toString()}');
                                   setState(() {});
 
                                   log(value.toString());

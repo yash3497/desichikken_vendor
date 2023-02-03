@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:delicious_vendor/utils/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
@@ -185,11 +187,13 @@ class _MapScreenState extends State<MapScreen> {
                           position: LatLng(lat, lang),
                           infoWindow: InfoWindow(title: location)));
 
-                      Navigator.pop(context, {
-                        "marketLocation": location,
-                        'latitude': lat,
-                        'longitude': long,
-                      });
+                      // log(log.toString());
+
+                      // Navigator.pop(context, {
+                      //   "marketLocation": location,
+                      //   'latitude': newlatlang.latitue,
+                      //   'longitude': newlatlang.longitude,
+                      // });
                     }
                   },
                   child: Padding(

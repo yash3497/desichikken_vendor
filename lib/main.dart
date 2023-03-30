@@ -64,7 +64,7 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider.value(value: ProductProvider()),
       ],
       child: MaterialApp(
-          title: 'Amaze Fresh Vendor',
+          title: 'Desichikken Vendor',
           theme: ThemeData(
             primarySwatch: Colors.blue,
 

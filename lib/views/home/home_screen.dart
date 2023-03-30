@@ -666,12 +666,12 @@ class _HomeScreenState extends State<HomeScreen> {
                               .format(data[i]['createdAt'].toDate());
                           final docs = data[i].data();
                           List dd = data[i]['items'];
-                          bool presents = false;
-                          for (var g in dd) {
-                            if (catList.contains(g['catId'])) {
-                              presents = true;
-                            }
-                          }
+                          // bool presents = false;
+                          // for (var g in dd) {
+                          //   if (catList.contains(g['catId'])) {
+                          //     presents = true;
+                          //   }
+                          // }
 
                           // final orderPrice =
                           //     double.parse(data[i]['orderPrice'].toString());
@@ -690,363 +690,332 @@ class _HomeScreenState extends State<HomeScreen> {
                           // print(distance);
                           // log(distance.toString());
                           // log(presents.toString());
-                          if (presents) {
-                            // log(distance.toString());
-                            return Padding(
-                              padding: const EdgeInsets.only(top: 5, bottom: 5),
-                              child: Container(
-                                margin:
-                                    const EdgeInsets.only(left: 12, right: 12),
-                                width: width(context),
-                                decoration: BoxDecoration(
-                                    border: Border.all(
-                                        color: Colors.grey.withOpacity(0.4)),
-                                    color: Colors.white,
-                                    borderRadius: BorderRadius.circular(5),
-                                    boxShadow: [
-                                      BoxShadow(
-                                          offset: const Offset(0, 10),
-                                          blurRadius: 33,
-                                          color: const Color(0xffd3d3d3)
-                                              .withOpacity(.90))
-                                    ]),
-                                child: Column(
-                                  children: [
-                                    Padding(
-                                      padding: const EdgeInsets.all(8.0),
-                                      child: Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.spaceBetween,
-                                        children: [
-                                          Text(
-                                            "ID: ${data[i]['orderId']}",
-                                            style: bodytext12Bold(color: black),
-                                          ),
-                                          /* Text(
+                          // if (presents) {
+                          // log(distance.toString());
+                          return Padding(
+                            padding: const EdgeInsets.only(top: 5, bottom: 5),
+                            child: Container(
+                              margin:
+                                  const EdgeInsets.only(left: 12, right: 12),
+                              width: width(context),
+                              decoration: BoxDecoration(
+                                  border: Border.all(
+                                      color: Colors.grey.withOpacity(0.4)),
+                                  color: Colors.white,
+                                  borderRadius: BorderRadius.circular(5),
+                                  boxShadow: [
+                                    BoxShadow(
+                                        offset: const Offset(0, 10),
+                                        blurRadius: 33,
+                                        color: const Color(0xffd3d3d3)
+                                            .withOpacity(.90))
+                                  ]),
+                              child: Column(
+                                children: [
+                                  Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        Text(
+                                          "ID: ${data[i]['orderId']}",
+                                          style: bodytext12Bold(color: black),
+                                        ),
+                                        /* Text(
                       Provider.of<GlobalHelper>(context, listen: false).gettime(
                           widget.snapshot.data()["orderingTime"].round()),
                       style: bodyText1Bd(context: context),
                   ) */
-                                        ],
-                                      ),
+                                      ],
                                     ),
-                                    Padding(
-                                      padding: const EdgeInsets.all(8.0),
-                                      child: Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.spaceBetween,
-                                        children: [
-                                          Container(
-                                            alignment: Alignment.center,
-                                            height: 21,
-                                            width: 66,
-                                            decoration: BoxDecoration(
-                                                color: const Color(0xfff0066ff),
-                                                borderRadius:
-                                                    BorderRadius.circular(4)),
-                                            child: Text("New",
-                                                style: bodyText12Small(
-                                                    color: white)),
-                                          ),
-                                          Text(
-                                            timeStamp.toString(),
-                                            style: bodytext12Bold(color: black),
-                                          ),
-                                        ],
-                                      ),
+                                  ),
+                                  Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        Container(
+                                          alignment: Alignment.center,
+                                          height: 21,
+                                          width: 66,
+                                          decoration: BoxDecoration(
+                                              color: const Color(0xfff0066ff),
+                                              borderRadius:
+                                                  BorderRadius.circular(4)),
+                                          child: Text("New",
+                                              style: bodyText12Small(
+                                                  color: white)),
+                                        ),
+                                        Text(
+                                          timeStamp.toString(),
+                                          style: bodytext12Bold(color: black),
+                                        ),
+                                      ],
                                     ),
-                                    const Divider(
-                                      thickness: 1,
-                                      endIndent: 10,
-                                      indent: 10,
-                                    ),
-                                    SizedBox(
-                                      height: height(context) * 0.2,
-                                      child: ListView.builder(
-                                          itemCount: docs['items'].length,
-                                          itemBuilder: (ctx, i) {
-                                            // final docs = data[i]['items'];s
-                                            var orderWeight =
-                                                docs['items'][i]['netWeight'];
+                                  ),
+                                  const Divider(
+                                    thickness: 1,
+                                    endIndent: 10,
+                                    indent: 10,
+                                  ),
+                                  SizedBox(
+                                    height: height(context) * 0.2,
+                                    child: ListView.builder(
+                                        itemCount: docs['items'].length,
+                                        itemBuilder: (ctx, i) {
+                                          // final docs = data[i]['items'];s
+                                          var orderWeight =
+                                              docs['items'][i]['netWeight'];
 
-                                            total +=
-                                                docs['items'][i]['vendorPrice'];
+                                          total +=
+                                              docs['items'][i]['vendorPrice'];
 
-                                            return Padding(
-                                              padding:
-                                                  const EdgeInsets.all(4.0),
-                                              child: Row(
-                                                //  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                                children: [
-                                                  const SizedBox(
-                                                    width: 8,
-                                                  ),
-                                                  Row(
-                                                    children: [
-                                                      SizedBox(
-                                                        height:
-                                                            height(context) *
-                                                                0.06,
-                                                        width: width(context) *
-                                                            0.15,
-                                                        child: Image.network(
-                                                            docs['items'][i]
-                                                                ['image']),
-                                                      ),
-                                                      addHorizontalySpace(5),
-                                                      Column(
-                                                        crossAxisAlignment:
-                                                            CrossAxisAlignment
-                                                                .start,
-                                                        children: [
-                                                          Text(
-                                                            "${docs['items'][i]["name"]} ",
-                                                            style:
-                                                                const TextStyle(
-                                                              color:
-                                                                  Colors.black,
-                                                              fontSize: 14,
-                                                              fontWeight:
-                                                                  FontWeight
-                                                                      .w400,
-                                                            ),
+                                          return Padding(
+                                            padding: const EdgeInsets.all(4.0),
+                                            child: Row(
+                                              //  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                              children: [
+                                                const SizedBox(
+                                                  width: 8,
+                                                ),
+                                                Row(
+                                                  children: [
+                                                    SizedBox(
+                                                      height: height(context) *
+                                                          0.06,
+                                                      width:
+                                                          width(context) * 0.15,
+                                                      child: Image.network(
+                                                          docs['items'][i]
+                                                              ['image']),
+                                                    ),
+                                                    addHorizontalySpace(5),
+                                                    SizedBox(
+                                                      width:
+                                                          width(context) * .37,
+                                                      child: Flexible(
+                                                        child: Text(
+                                                          "${docs['items'][i]["name"]} ",
+                                                          style:
+                                                              const TextStyle(
+                                                            color: Colors.black,
+                                                            fontSize: 14,
+                                                            fontWeight:
+                                                                FontWeight.w400,
                                                           ),
-                                                        ],
-                                                      ),
-                                                      Text(
-                                                        docs['items'][i]
-                                                                ['productQty']
-                                                            .toString(),
-                                                        style: const TextStyle(
-                                                          color: Colors.black,
-                                                          fontSize: 14,
-                                                          fontWeight:
-                                                              FontWeight.w400,
                                                         ),
                                                       ),
-                                                      addHorizontalySpace(10),
-                                                      Column(
-                                                        crossAxisAlignment:
-                                                            CrossAxisAlignment
-                                                                .start,
-                                                        children: [
-                                                          const Text(
-                                                            "Net-",
-                                                            style: TextStyle(
-                                                              color:
-                                                                  Colors.black,
-                                                              fontSize: 10,
-                                                              fontWeight:
-                                                                  FontWeight
-                                                                      .w400,
-                                                            ),
-                                                          ),
-                                                          Text(
-                                                            "Weight-${orderWeight}",
-                                                            style:
-                                                                const TextStyle(
-                                                              color:
-                                                                  Colors.black,
-                                                              fontSize: 10,
-                                                              fontWeight:
-                                                                  FontWeight
-                                                                      .w400,
-                                                            ),
-                                                          ),
-                                                        ],
+                                                    ),
+                                                    Text(
+                                                      docs['items'][i]
+                                                              ['productQty']
+                                                          .toString(),
+                                                      style: const TextStyle(
+                                                        color: Colors.black,
+                                                        fontSize: 14,
+                                                        fontWeight:
+                                                            FontWeight.w400,
                                                       ),
-                                                    ],
-                                                  ),
-                                                  const Spacer(),
-                                                  Text(
-                                                    "₹ ${docs['items'][i]['vendorPrice'] * docs['items'][i]['productQty']}",
-                                                    style: bodyText14w600(
-                                                        color: black),
-                                                  )
-                                                ],
-                                              ),
-                                            );
-                                          }),
-                                    ),
-                                    const Divider(
-                                      thickness: 1,
-                                      endIndent: 10,
-                                      indent: 10,
-                                    ),
-                                    Padding(
-                                      padding: const EdgeInsets.all(8.0),
-                                      child: Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.spaceBetween,
-                                        children: [
-                                          Text(
-                                            "Item Total: ",
-                                            style: bodytext12Bold(color: black),
-                                          ),
-                                          const SizedBox(
-                                            width: 2,
-                                          ),
-                                          Text(
-                                            ((docs['items'] as List)
-                                                .map((e) => (e['vendorPrice'] *
-                                                    e['productQty']))
-                                                .toList()
-                                                .reduce((value, element) =>
-                                                    value +
-                                                    element)).toString(),
-                                            style: bodytext12Bold(color: black),
-                                          ),
-                                          Container(
-                                            margin: EdgeInsets.only(left: 6),
-                                            padding: EdgeInsets.all(2),
-                                            alignment: Alignment.center,
-                                            height: 20,
-                                            // width: 29,
-                                            decoration: BoxDecoration(
-                                                border:
-                                                    Border.all(color: primary),
-                                                borderRadius:
-                                                    BorderRadius.circular(5)),
-                                            child: Text(
-                                              // data[i]['isPaid'] ? 'PAID' : 'UNPAID',
-                                              data[i]['paymentMethod'],
-                                              style: bodyText11Small(
-                                                  color: primary),
+                                                    ),
+                                                    addHorizontalySpace(10),
+                                                    Text(
+                                                      "Net Weight-${orderWeight}",
+                                                      style: const TextStyle(
+                                                        color: Colors.black,
+                                                        fontSize: 10,
+                                                        fontWeight:
+                                                            FontWeight.w400,
+                                                      ),
+                                                    ),
+                                                  ],
+                                                ),
+                                                const SizedBox(
+                                                  width: 5,
+                                                ),
+                                                Text(
+                                                  "₹ ${docs['items'][i]['vendorPrice'] * docs['items'][i]['productQty']}",
+                                                  style: bodyText14w600(
+                                                      color: black),
+                                                ),
+                                              ],
                                             ),
-                                          ),
-                                          const Spacer(),
-                                        ],
-                                      ),
-                                    ),
-                                    const SizedBox(
-                                        // height: 10,
+                                          );
+                                        }),
+                                  ),
+                                  const Divider(
+                                    thickness: 1,
+                                    endIndent: 10,
+                                    indent: 10,
+                                  ),
+                                  Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        Text(
+                                          "Item Total: ",
+                                          style: bodytext12Bold(color: black),
                                         ),
-                                    Padding(
-                                      padding: const EdgeInsets.all(8.0),
-                                      child: Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.spaceAround,
-                                        children: [
-                                          Container(
-                                            height: 30,
-                                            width: 114,
-                                            decoration: BoxDecoration(
-                                                borderRadius:
-                                                    BorderRadius.circular(4),
-                                                border: Border.all(
-                                                    color: const Color(
-                                                        0xffffb0707))),
-                                            child: MaterialButton(
-                                              height: height(context) / 25,
-                                              minWidth: width(context) * 0.3,
-                                              onPressed: () async {
-                                                // FlutterRingtonePlayer.stop();
-
-                                                _addNotificationData(
-                                                    data[i]['uid'],
-                                                    'Order Rejected\nOrder Id: ${data[i].id}');
-                                                sendPushMessage(
-                                                    'Order Id: ${data[i].id}',
-                                                    'Order Rejected',
-                                                    await Provider.of<
-                                                                FirebaseOperations>(
-                                                            context,
-                                                            listen: false)
-                                                        .getToken(
-                                                            data[i]['uid']));
-                                                await Provider.of<
-                                                            FirebaseOperations>(
-                                                        context,
-                                                        listen: false)
-                                                    .rejectOrder(data[i].id)
-                                                    .then((value) =>
-                                                        FlutterRingtonePlayer
-                                                            .stop());
-                                              },
-                                              shape: RoundedRectangleBorder(
-                                                  borderRadius:
-                                                      BorderRadius.circular(4)),
-                                              child: const Text("Reject",
-                                                  style: TextStyle(
-                                                      color: Color.fromARGB(
-                                                          255, 192, 107, 107))),
-                                            ),
+                                        const SizedBox(
+                                          width: 2,
+                                        ),
+                                        Text(
+                                          ((docs['items'] as List)
+                                              .map((e) => (e['vendorPrice'] *
+                                                  e['productQty']))
+                                              .toList()
+                                              .reduce((value, element) =>
+                                                  value + element)).toString(),
+                                          style: bodytext12Bold(color: black),
+                                        ),
+                                        Container(
+                                          margin: EdgeInsets.only(left: 6),
+                                          padding: EdgeInsets.all(2),
+                                          alignment: Alignment.center,
+                                          height: 20,
+                                          // width: 29,
+                                          decoration: BoxDecoration(
+                                              border:
+                                                  Border.all(color: primary),
+                                              borderRadius:
+                                                  BorderRadius.circular(5)),
+                                          child: Text(
+                                            // data[i]['isPaid'] ? 'PAID' : 'UNPAID',
+                                            data[i]['paymentMethod'],
+                                            style:
+                                                bodyText11Small(color: primary),
                                           ),
-                                          MaterialButton(
-                                            height: height(context) / 27,
-                                            minWidth: width(context) * 0.4,
+                                        ),
+                                        const Spacer(),
+                                      ],
+                                    ),
+                                  ),
+                                  const SizedBox(
+                                      // height: 10,
+                                      ),
+                                  Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceAround,
+                                      children: [
+                                        Container(
+                                          height: 30,
+                                          width: 114,
+                                          decoration: BoxDecoration(
+                                              borderRadius:
+                                                  BorderRadius.circular(4),
+                                              border: Border.all(
+                                                  color: const Color(
+                                                      0xffffb0707))),
+                                          child: MaterialButton(
+                                            height: height(context) / 25,
+                                            minWidth: width(context) * 0.3,
                                             onPressed: () async {
-                                              Slocation =
-                                                  vendorData['marketLocation'];
-                                              Slong = vendorData['longitude'];
-                                              Slat = vendorData['latitude'];
-                                              // _getNewOrder();
+                                              // FlutterRingtonePlayer.stop();
+
                                               _addNotificationData(
                                                   data[i]['uid'],
-                                                  'Order Accepted\nOrder Id: ${data[i].id}');
+                                                  'Order Rejected\nOrder Id: ${data[i].id}');
                                               sendPushMessage(
                                                   'Order Id: ${data[i].id}',
-                                                  'Order Accepted',
+                                                  'Order Rejected',
                                                   await Provider.of<
                                                               FirebaseOperations>(
                                                           context,
                                                           listen: false)
                                                       .getToken(
                                                           data[i]['uid']));
-                                              getProductQty(docs['items'][i]
-                                                      ['productID'])
-                                                  .then((value) {
-                                                FirebaseFirestore.instance
-                                                    .collection("Products")
-                                                    .doc(docs['items'][i]
-                                                        ['productID'])
-                                                    .update({
-                                                  'quantity': currentQty -
-                                                      docs['items'][i]
-                                                          ['productQty']
-                                                });
-                                              });
-                                              log('${docs['items'][i]['productQty']}');
-
                                               await Provider.of<
                                                           FirebaseOperations>(
                                                       context,
                                                       listen: false)
-                                                  .updadatePayment(
-                                                      data[i]['orderId']);
-                                              await Provider.of<
-                                                          FirebaseOperations>(
-                                                      context,
-                                                      listen: false)
-                                                  .acceptOrder(
-                                                    data[i].id,
-                                                    vendorData[
-                                                        'marketLocation'],
-                                                    vendorData['latitude'],
-                                                    vendorData['longitude'],
-                                                  )
+                                                  .rejectOrder(data[i].id)
                                                   .then((value) =>
                                                       FlutterRingtonePlayer
                                                           .stop());
                                             },
-                                            color: primary,
                                             shape: RoundedRectangleBorder(
                                                 borderRadius:
                                                     BorderRadius.circular(4)),
-                                            child: Text("Accept",
-                                                style: bodytext12Bold(
-                                                    color: white)),
+                                            child: const Text("Reject",
+                                                style: TextStyle(
+                                                    color: Color.fromARGB(
+                                                        255, 192, 107, 107))),
                                           ),
-                                        ],
-                                      ),
+                                        ),
+                                        MaterialButton(
+                                          height: height(context) / 27,
+                                          minWidth: width(context) * 0.4,
+                                          onPressed: () async {
+                                            Slocation =
+                                                vendorData['marketLocation'];
+                                            Slong = vendorData['longitude'];
+                                            Slat = vendorData['latitude'];
+                                            // _getNewOrder();
+                                            _addNotificationData(data[i]['uid'],
+                                                'Order Accepted\nOrder Id: ${data[i].id}');
+                                            sendPushMessage(
+                                                'Order Id: ${data[i].id}',
+                                                'Order Accepted',
+                                                await Provider.of<
+                                                            FirebaseOperations>(
+                                                        context,
+                                                        listen: false)
+                                                    .getToken(data[i]['uid']));
+                                            getProductQty(docs['items'][i]
+                                                    ['productID'])
+                                                .then((value) {
+                                              FirebaseFirestore.instance
+                                                  .collection("Products")
+                                                  .doc(docs['items'][i]
+                                                      ['productID'])
+                                                  .update({
+                                                'quantity': currentQty -
+                                                    docs['items'][i]
+                                                        ['productQty']
+                                              });
+                                            });
+                                            log('${docs['items'][i]['productQty']}');
+
+                                            await Provider.of<
+                                                        FirebaseOperations>(
+                                                    context,
+                                                    listen: false)
+                                                .updadatePayment(
+                                                    data[i]['orderId']);
+                                            await Provider.of<
+                                                        FirebaseOperations>(
+                                                    context,
+                                                    listen: false)
+                                                .acceptOrder(
+                                                  data[i].id,
+                                                  vendorData['marketLocation'],
+                                                  vendorData['latitude'],
+                                                  vendorData['longitude'],
+                                                )
+                                                .then((value) =>
+                                                    FlutterRingtonePlayer
+                                                        .stop());
+                                          },
+                                          color: primary,
+                                          shape: RoundedRectangleBorder(
+                                              borderRadius:
+                                                  BorderRadius.circular(4)),
+                                          child: Text("Accept",
+                                              style:
+                                                  bodytext12Bold(color: white)),
+                                        ),
+                                      ],
                                     ),
-                                  ],
-                                ),
+                                  ),
+                                ],
                               ),
-                            );
-                          } else {
-                            return SizedBox();
-                          }
+                            ),
+                          );
                         }),
                   );
                 }

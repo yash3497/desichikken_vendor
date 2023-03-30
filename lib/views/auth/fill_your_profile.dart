@@ -3,6 +3,7 @@ import 'dart:io';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:delicious_vendor/utils/constants.dart';
+import 'package:delicious_vendor/views/auth/waiting_screen.dart';
 import 'package:delicious_vendor/widget/my_bottom_navbar.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
@@ -80,7 +81,6 @@ class _FillyourProfileState extends State<FillyourProfile> {
         latitude = vendorData['latitude'];
         longitude = vendorData['longitude'];
         // });
-
       }
       if (mounted) {
         setState(() {});
@@ -506,7 +506,7 @@ class _FillyourProfileState extends State<FillyourProfile> {
                             "date of birth": dateOfBirthController.text.trim(),
                             "image": _imgUrl,
                             // "categoryName": categoryName,
-                            "isVerified": true,
+                            "isVerified": false,
                             "isBlocked": false,
                             'rating': 4,
                             'timing': 10,
@@ -516,7 +516,7 @@ class _FillyourProfileState extends State<FillyourProfile> {
                           }).then((value) => Navigator.push(
                                   context,
                                   MaterialPageRoute(
-                                      builder: (ctx) => MyBottomBar())));
+                                      builder: (ctx) => WaitingScreen())));
                         } else {
                           Fluttertoast.showToast(
                               msg: "Invalid banking details");

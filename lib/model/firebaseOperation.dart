@@ -139,10 +139,7 @@ class FirebaseOperations with ChangeNotifier {
     return await FirebaseFirestore.instance
         .collection("Orders")
         .doc(docId)
-        .update({
-      "orderProcess": true,
-      "readyTime": DateTime.now().millisecondsSinceEpoch
-    });
+        .update({"orderProcess": true, "readyTime": DateTime.now().toString()});
   }
 
   Future deliveredOrder(String docId) async {
